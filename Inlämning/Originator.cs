@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 
 namespace Inlämning
@@ -17,7 +15,7 @@ namespace Inlämning
         public Originator(string state)
         {
             this._state = state;
-            Console.WriteLine("Originator: My initial state is: " + state);
+            Console.WriteLine("Originator: min state: " + state);
         }
 
         public Originator(Func<int> read)
@@ -30,14 +28,14 @@ namespace Inlämning
         // methods of the business logic via the save() method.
         public void DoSomething()
         {
-            Console.WriteLine("Originator: I'm doing something important.");
-            this._state = this.GenerateRandomString(30);
-            Console.WriteLine($"Originator: and my state has changed to: {_state}");
+            Console.WriteLine("Originator: Jag gör något viktigt.");
+            this._state = this.GenerateRandomString(10);
+            Console.WriteLine($"Originator: och min state har ändrats till: {_state}");
         }
 
         private string GenerateRandomString(int length = 10)
         {
-            string allowedSymbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string allowedSymbols = "tttttt";
             string result = string.Empty;
 
             while (length > 0)
@@ -67,7 +65,7 @@ namespace Inlämning
             }
 
             this._state = memento.GetState();
-            Console.Write($"Originator: My state has changed to: {_state}");
+            Console.Write($"Originator: Min state har ändrats till: {_state}");
         }
     }
 }

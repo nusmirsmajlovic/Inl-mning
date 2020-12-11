@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
 
 namespace Inlämning
 {
@@ -10,17 +10,41 @@ namespace Inlämning
         private List<IMemento> _mementos = new List<IMemento>();
 
         private Originator _originator = null;
+        private object this_mementos;
 
         public Caretaker(Originator originator)
         {
             this._originator = originator;
+            
         }
 
         public void Backup()
         {
-            Console.WriteLine("\nCaretaker: Saving Originator's state...");
+            Console.WriteLine("\nSpara state");
             this._mementos.Add(this._originator.Save());
         }
+        public void Redo()
+        {
+            if (this._mementos.Count == 0) 
+            {
+                return;
+            }
+
+            var memento = this._mementos.Last();
+            this._mementos.Remove(memento);
+
+            Console.WriteLine("Återställa state till: " + memento.GetName());
+
+            try
+            {
+                this._originator.Restore(memento);
+            }
+            catch (Exception)
+            {
+                this.Redo();
+            }
+        }
+
 
         public void Undo()
         {
@@ -32,7 +56,7 @@ namespace Inlämning
             var memento = this._mementos.Last();
             this._mementos.Remove(memento);
 
-            Console.WriteLine("Caretaker: Restoring state to: " + memento.GetName());
+            Console.WriteLine("Caretaker: Återställa state till: " + memento.GetName());
 
             try
             {
@@ -43,10 +67,10 @@ namespace Inlämning
                 this.Undo();
             }
         }
-
+       
         public void ShowHistory()
         {
-            Console.WriteLine("Caretaker: Here's the list of mementos:");
+            Console.WriteLine("Caretaker:Här är  mementos:");
 
             foreach (var memento in this._mementos)
             {

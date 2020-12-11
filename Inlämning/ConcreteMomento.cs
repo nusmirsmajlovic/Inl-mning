@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Inlämning
 {
     class ConcreteMemento : IMemento
     {
         private string _state;
-
         private DateTime _date;
 
         public ConcreteMemento(string state)
