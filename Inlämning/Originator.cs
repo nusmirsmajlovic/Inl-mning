@@ -2,15 +2,12 @@
 using System.Threading;
 
 namespace Inlämning
-{   // The Originator holds some important state that may change over time. It
-    // also defines a method for saving the state inside a memento and another
-    // method for restoring the state from it.
+{  
     class Originator
     {
-        // For the sake of simplicity, the originator's state is stored inside a
-        // single variable.
+        
         public string _state;
-        private Func<int> read;
+        public Func<int> read;
 
         public Originator(string state)
         {
@@ -23,9 +20,7 @@ namespace Inlämning
             this.read = read;
         }
 
-        // The Originator's business logic may affect its internal state.
-        // Therefore, the client should backup the state before launching
-        // methods of the business logic via the save() method.
+      
         public void DoSomething()
         {
             Console.WriteLine("Originator: Jag gör något viktigt.");
@@ -35,7 +30,7 @@ namespace Inlämning
 
         private string GenerateRandomString(int length = 10)
         {
-            string allowedSymbols = "tttttt";
+            string allowedSymbols = "alen voli milovana";
             string result = string.Empty;
 
             while (length > 0)
@@ -50,14 +45,14 @@ namespace Inlämning
             return result;
         }
 
-        // Saves the current state inside a memento.
-        public IMemento Save()
+        
+        public Memento Save()
         {
             return new ConcreteMemento(this._state);
         }
 
-        // Restores the Originator's state from a memento object.
-        public void Restore(IMemento memento)
+        
+        public void Restore(Memento memento)
         {
             if (!(memento is ConcreteMemento))
             {

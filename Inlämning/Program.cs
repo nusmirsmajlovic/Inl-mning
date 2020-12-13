@@ -5,7 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Client code.
+       
         Originator originator = new Originator("NusmirSmajovic");
         Caretaker caretaker = new Caretaker(originator);
 
@@ -27,7 +27,16 @@ class Program
         Console.WriteLine("\n\nClient: En gång till!\n");
         caretaker.Undo();
 
-       
+
+        Console.WriteLine("\nClient: gå tillbaka!\n");
+        caretaker.Redo();
+
+        Console.WriteLine("\n\nClient: En gång till!\n");
+        caretaker.Redo();
+
+        Console.WriteLine();
+        caretaker.ShowHistory();
+
 
         Console.WriteLine();
         

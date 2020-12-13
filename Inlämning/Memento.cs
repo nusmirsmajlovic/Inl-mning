@@ -3,7 +3,7 @@
 
 namespace Inlämning
 {
-   public  interface IMemento
+   public  interface Memento
     {
 
         string GetName();

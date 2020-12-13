@@ -7,10 +7,10 @@ namespace Inlämning
 {
     class Caretaker
     {
-        private List<IMemento> _mementos = new List<IMemento>();
+        private List<Memento> _mementos = new List<Memento>();
 
         private Originator _originator = null;
-        private object this_mementos;
+       
 
         public Caretaker(Originator originator)
         {
@@ -30,8 +30,8 @@ namespace Inlämning
                 return;
             }
 
-            var memento = this._mementos.Last();
-            this._mementos.Remove(memento);
+            var memento = this._mementos.First();
+            this._mementos.Add(memento);
 
             Console.WriteLine("Återställa state till: " + memento.GetName());
 
